@@ -22,4 +22,16 @@ public class TodolistApp {
   // Remove Todolist
   public static void removeTodolist() {
   }
+
+  // View show todolist
+  public static void viewShowTodolist() {
+  }
+
+  // View Add todolist
+  public static void viewAddTodolist() {
+  }
+
+  // View remove todolist
+  public static void viewRemoveTodolist() {
+  }
 }
