@@ -8,7 +8,7 @@ public class TodolistApp {
   private static String[] model = new String[10];
 
   public static void main(String[] args) {
-    testShowTodolist();
+    testAddTodolist();
   }
 
   // Show Todolist
@@ -58,6 +58,14 @@ public class TodolistApp {
         break;
       }
     }
+  }
+
+  public static void testAddTodolist() {
+    for (int i = 0; i < 25; i++) {
+      addTodolist("Todolist ke-" + i);
+    }
+
+    showTodolist();
   }
 
   // Remove Todolist
