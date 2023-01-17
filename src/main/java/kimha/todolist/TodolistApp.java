@@ -30,7 +30,34 @@ public class TodolistApp {
   }
 
   // Add Todolist
-  public static void addTodolist() {
+  public static void addTodolist(String todo) {
+    boolean isFull = true;
+
+    // Checking if model is full or not
+    for (int i = 0; i < model.length; i++) {
+      if (model[i] == null) {
+        isFull = false;
+        break;
+      }
+    }
+
+    // If full, resize model twice of the length
+    if (isFull) {
+      String[] temp = model;
+      model = new String[model.length * 2];
+
+      for (int i = 0; i < temp.length; i++) {
+        model[i] = temp[i];
+      }
+    }
+
+    // Add todo to model
+    for (int i = 0; i < model.length; i++) {
+      if (model[i] == null) {
+        model[i] = todo;
+        break;
+      }
+    }
   }
 
   // Remove Todolist
