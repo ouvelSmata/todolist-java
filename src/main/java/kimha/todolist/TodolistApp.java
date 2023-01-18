@@ -7,8 +7,10 @@ public class TodolistApp {
 
   private static String[] model = new String[10];
 
+  private static java.util.Scanner scanner = new java.util.Scanner(System.in);
+
   public static void main(String[] args) {
-    testRemoveTodolist();
+    testInput();
   }
 
   // Show Todolist
@@ -103,6 +105,20 @@ public class TodolistApp {
     System.out.println(result);
 
     showTodolist();
+  }
+
+  public static String input(String info) {
+    System.out.print(info + ": ");
+    String data = scanner.nextLine();
+    return data;
+  }
+
+  public static void testInput() {
+    String name = input("name");
+    System.out.println("Hello " + name);
+
+    String channel = input("channel");
+    System.out.println(channel);
   }
 
   // View show todolist
