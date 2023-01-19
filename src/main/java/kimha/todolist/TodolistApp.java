@@ -10,11 +10,12 @@ public class TodolistApp {
   private static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
   public static void main(String[] args) {
-    testInput();
+    testViewShowTodolist();
   }
 
   // Show Todolist
   public static void showTodolist() {
+    System.out.println("TODOLIST");
     for (int i = 0; i < model.length; i++) {
       String todo = model[i];
       int index = i + 1;
@@ -123,6 +124,35 @@ public class TodolistApp {
 
   // View show todolist
   public static void viewShowTodolist() {
+    while (true) {
+      showTodolist();
+
+      System.out.println("Menu:");
+      System.out.println("1. Add todolist");
+      System.out.println("2. Remove todolist");
+      System.out.println("x. Exit");
+
+      String input = input("Choose");
+
+      if (input.equals("1")) {
+        viewAddTodolist();
+      } else if (input.equals("2")) {
+        viewRemoveTodolist();
+      } else if (input.equals("x")) {
+        break;
+      } else {
+        System.out.println("Input could not understood!");
+      }
+    }
+  }
+
+  public static void testViewShowTodolist() {
+    addTodolist("Satu");
+    addTodolist("Dua");
+    addTodolist("Tiga");
+    addTodolist("Empat");
+    addTodolist("Lima");
+    viewShowTodolist();
   }
 
   // View Add todolist
