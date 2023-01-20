@@ -10,7 +10,7 @@ public class TodolistApp {
   private static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
   public static void main(String[] args) {
-    testViewAddTodolist();
+    testViewRemoveTodolist();
   }
 
   // Show Todolist
@@ -157,9 +157,9 @@ public class TodolistApp {
 
   // View Add todolist
   public static void viewAddTodolist() {
-    System.out.println("MENAMBAH TODOLIST");
+    System.out.println("ADD TODOLIST");
 
-    String todo = input("todo (x untuk keluar)");
+    String todo = input("todo (x to exit)");
 
     if (todo.equals("x")) {
       // Cancel
@@ -178,5 +178,30 @@ public class TodolistApp {
 
   // View remove todolist
   public static void viewRemoveTodolist() {
+    System.out.println("REMOVE TODOLIST");
+
+    String input = input("number (x to exit)");
+
+    if (input.equals("x")) {
+      // Cancel
+    } else {
+      boolean isSuccess = removeTodolist(Integer.valueOf(input));
+
+      if (!isSuccess) {
+        System.out.println("Failed to remove todo: " + input);
+      }
+    }
+  }
+
+  public static void testViewRemoveTodolist() {
+    addTodolist("Satu");
+    addTodolist("Dua");
+    addTodolist("Tiga");
+
+    showTodolist();
+
+    viewRemoveTodolist();
+
+    showTodolist();
   }
 }
