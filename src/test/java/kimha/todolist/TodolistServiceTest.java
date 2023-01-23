@@ -42,4 +42,22 @@ public class TodolistServiceTest extends AbstractTest {
 
     service.showTodolist();
   }
+
+  @Tag("testRemoveTodolist")
+  @Test
+  void testRemoveTodolist() {
+    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistService service = new TodolistServiceImpl(repository);
+
+    service.addTodolist("Satu");
+    service.addTodolist("Dua");
+    service.addTodolist("Tiga");
+    service.showTodolist();
+
+    service.removeTodolist(5);
+    service.showTodolist();
+
+    service.removeTodolist(2);
+    service.showTodolist();
+  }
 }
