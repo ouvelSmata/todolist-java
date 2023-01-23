@@ -32,8 +32,11 @@ public class TodolistServiceImpl implements TodolistService {
 
   @Override
   public void addTodolist(String todo) {
-    // TODO Auto-generated method stub
+    Todolist todolist = new Todolist(todo);
 
+    repository.add(todolist);
+
+    System.out.println("Sukses menambah todo: " + todo);
   }
 
   @Override
