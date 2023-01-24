@@ -38,7 +38,15 @@ public class TodolistView {
   }
 
   public void addTodolist() {
+    System.out.println("ADD TODOLIST");
 
+    String todo = InputUtil.input("todo (x to exit)");
+
+    if (todo.equals("x")) {
+      // Cancel
+    } else {
+      service.addTodolist(todo);
+    }
   }
 
   public void removeTodolist() {

@@ -12,7 +12,7 @@ import kimha.todolist.view.TodolistView;
 public class TodolistViewTest {
 
   public static void main(String[] args) {
-    testViewShowTodolist();
+    testViewAddTodolist();
   }
 
   static void testViewShowTodolist() {
@@ -25,5 +25,17 @@ public class TodolistViewTest {
     service.addTodolist("Tiga");
 
     view.showTodolist();
+  }
+
+  static void testViewAddTodolist() {
+    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistService service = new TodolistServiceImpl(repository);
+    TodolistView view = new TodolistView(service);
+
+    view.addTodolist();
+    service.showTodolist();
+
+    view.addTodolist();
+    service.showTodolist();
   }
 }
