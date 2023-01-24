@@ -57,6 +57,9 @@ public class TodolistServiceTest extends AbstractTest {
     service.removeTodolist(5);
     service.showTodolist();
 
+    service.removeTodolist(15);
+    service.showTodolist();
+
     service.removeTodolist(2);
     service.showTodolist();
   }
