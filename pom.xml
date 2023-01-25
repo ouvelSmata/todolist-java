@@ -16,7 +16,7 @@
   <description>Todolist with java programming</description>
   <properties>
     <java.version>17</java.version>
-    <start-class>kimha.todolist.view.viewTest.TodolistViewTest</start-class>
+    <start-class>kimha.todolist.TodolistAppV2</start-class>
   </properties>
   <dependencies>
     <dependency>
@@ -48,7 +48,7 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
-          <mainClass>kimha.todolist.view.viewTest.TodolistViewTest</mainClass>
+          <mainClass>kimha.todolist.TodolistAppV2</mainClass>
         </configuration>
       </plugin>
     </plugins>
