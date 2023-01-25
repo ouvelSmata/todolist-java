@@ -50,5 +50,14 @@ public class TodolistView {
   }
 
   public void removeTodolist() {
+    System.out.println("REMOVE TODOLIST");
+
+    String input = InputUtil.input("number (x to exit)");
+
+    if (input.equals("x")) {
+      // Cancel
+    } else {
+      service.removeTodolist(Integer.valueOf(input));
+    }
   }
 }
