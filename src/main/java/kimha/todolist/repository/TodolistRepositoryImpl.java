@@ -1,5 +1,11 @@
 package kimha.todolist.repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import kimha.todolist.entity.Todolist;
 
 /**
@@ -8,6 +14,12 @@ import kimha.todolist.entity.Todolist;
 public class TodolistRepositoryImpl implements TodolistRepository {
 
   private Todolist[] data = new Todolist[10];
+
+  private DataSource dataSource;
+
+  public TodolistRepositoryImpl(DataSource dataSource) {
+    this.dataSource = dataSource;
+  }
 
   @Override
   public Todolist[] getAll() {
@@ -39,13 +51,23 @@ public class TodolistRepositoryImpl implements TodolistRepository {
 
   @Override
   public void add(Todolist todolist) {
-    resizeIfFull();
+    // resizeIfFull();
 
-    for (int i = 0; i < data.length; i++) {
-      if (data[i] == null) {
-        data[i] = todolist;
-        break;
-      }
+    // for (int i = 0; i < data.length; i++) {
+    // if (data[i] == null) {
+    // data[i] = todolist;
+    // break;
+    // }
+    // }
+
+    String sql = "INSERT INTO todolist(todo) VALUES(?)";
+
+    try (Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);) {
+      statement.setString(1, todolist.getTodo());
+      statement.executeUpdate();
+    } catch (SQLException exception) {
+      throw new RuntimeException(exception);
     }
   }
 
