@@ -1,9 +1,12 @@
 package kimha.todolist.view.viewTest;
 
+import com.zaxxer.hikari.HikariDataSource;
+
 import kimha.todolist.repository.TodolistRepository;
 import kimha.todolist.repository.TodolistRepositoryImpl;
 import kimha.todolist.service.TodolistService;
 import kimha.todolist.service.TodolistServiceImpl;
+import kimha.todolist.util.DatabaseUtil;
 import kimha.todolist.view.TodolistView;
 
 /**
@@ -11,12 +14,24 @@ import kimha.todolist.view.TodolistView;
  */
 public class TodolistViewTest {
 
+  private static HikariDataSource dataSource;
+
+  // @BeforeEach
+  void setUp() {
+    dataSource = DatabaseUtil.getDataSource();
+  }
+
+  // @AfterEach
+  void tearDown() {
+    dataSource.close();
+  }
+
   public static void main(String[] args) {
     testViewRemoveTodolist();
   }
 
   static void testViewShowTodolist() {
-    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistRepository repository = new TodolistRepositoryImpl(dataSource);
     TodolistService service = new TodolistServiceImpl(repository);
     TodolistView view = new TodolistView(service);
 
@@ -28,7 +43,7 @@ public class TodolistViewTest {
   }
 
   static void testViewAddTodolist() {
-    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistRepository repository = new TodolistRepositoryImpl(dataSource);
     TodolistService service = new TodolistServiceImpl(repository);
     TodolistView view = new TodolistView(service);
 
@@ -40,7 +55,7 @@ public class TodolistViewTest {
   }
 
   static void testViewRemoveTodolist() {
-    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistRepository repository = new TodolistRepositoryImpl(dataSource);
     TodolistService service = new TodolistServiceImpl(repository);
     TodolistView view = new TodolistView(service);
 

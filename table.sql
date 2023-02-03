@@ -11,3 +11,5 @@ CREATE TABLE todolist (
 )ENGINE = InnoDB;
 
 DESC todolist;
+
+SELECT * FROM todolist;

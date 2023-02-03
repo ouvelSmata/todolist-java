@@ -1,19 +1,38 @@
 package kimha.todolist;
 
+import javax.sql.DataSource;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import com.zaxxer.hikari.HikariDataSource;
 
 import kimha.todolist.entity.Todolist;
 import kimha.todolist.repository.TodolistRepository;
 import kimha.todolist.repository.TodolistRepositoryImpl;
 import kimha.todolist.service.TodolistService;
 import kimha.todolist.service.TodolistServiceImpl;
+import kimha.todolist.util.DatabaseUtil;
 
 /**
  * TodolistServiceTest
  */
 public class TodolistServiceTest extends AbstractTest {
+
+  private HikariDataSource dataSource;
+
+  @BeforeEach
+  void setUp() {
+    dataSource = DatabaseUtil.getDataSource();
+  }
+
+  @AfterEach
+  void tearDown() {
+    dataSource.close();
+  }
 
   @Tag("testShowTodolist")
   @Test
@@ -29,7 +48,7 @@ public class TodolistServiceTest extends AbstractTest {
   @Tag("testAddTodolist")
   @Test
   void testAddTodolist() {
-    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistRepository repository = new TodolistRepositoryImpl(dataSource);
     TodolistService service = new TodolistServiceImpl(repository);
 
     // service.addTodolist("Satu");
@@ -46,7 +65,7 @@ public class TodolistServiceTest extends AbstractTest {
   @Tag("testRemoveTodolist")
   @Test
   void testRemoveTodolist() {
-    TodolistRepository repository = new TodolistRepositoryImpl();
+    TodolistRepository repository = new TodolistRepositoryImpl(dataSource);
     TodolistService service = new TodolistServiceImpl(repository);
 
     service.addTodolist("Satu");
