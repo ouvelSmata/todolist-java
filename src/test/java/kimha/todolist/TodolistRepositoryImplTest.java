@@ -36,8 +36,17 @@ public class TodolistRepositoryImplTest {
   @Test
   void testRepositoryAdd() {
     Todolist todolist = new Todolist();
-    todolist.setTodo("Otong");
+    todolist.setTodo("Ucup");
 
     repository.add(todolist);
+  }
+
+  @Tag("testRepositoryRemove")
+  @Test
+  void testRepositoryRemove() {
+    System.out.println(repository.remove(1));
+    System.out.println(repository.remove(2));
+    System.out.println(repository.remove(3));
+    System.out.println(repository.remove(4));
   }
 }
