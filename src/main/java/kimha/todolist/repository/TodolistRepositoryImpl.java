@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -14,7 +17,7 @@ import kimha.todolist.entity.Todolist;
  */
 public class TodolistRepositoryImpl implements TodolistRepository {
 
-  private Todolist[] data = new Todolist[10];
+  // private Todolist[] data = new Todolist[10];
 
   private DataSource dataSource;
 
@@ -24,7 +27,26 @@ public class TodolistRepositoryImpl implements TodolistRepository {
 
   @Override
   public Todolist[] getAll() {
-    return data;
+    // return data;
+    String sql = "SELECT id, todo FROM todolist";
+
+    try (Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);) {
+      List<Todolist> todolists = new ArrayList<>();
+
+      while (resultSet.next()) {
+        Todolist todolist = new Todolist();
+        todolist.setId(resultSet.getInt("id"));
+        todolist.setTodo(resultSet.getString("todo"));
+
+        todolists.add(todolist);
+      }
+
+      return todolists.toArray(new Todolist[] {});
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   // private boolean isFull() {
