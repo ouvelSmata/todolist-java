@@ -49,4 +49,19 @@ public class TodolistRepositoryImplTest {
     System.out.println(repository.remove(3));
     System.out.println(repository.remove(4));
   }
+
+  @Tag("testRepositoryGetAll")
+  @Test
+  void testRepositoryGetAll() {
+    repository.add(new Todolist("Otong"));
+    repository.add(new Todolist("Ucup"));
+    repository.add(new Todolist("Mario"));
+    repository.add(new Todolist("Udin"));
+
+    Todolist[] todolists = repository.getAll();
+
+    for (Todolist todolist : todolists) {
+      System.out.println(todolist.getId() + ": " + todolist.getTodo());
+    }
+  }
 }
