@@ -20,14 +20,17 @@ public class TodolistServiceImpl implements TodolistService {
 
     System.out.println("TODOLIST");
 
-    for (int i = 0; i < model.length; i++) {
-      Todolist todo = model[i];
-      int number = i + 1;
-
-      if (todo != null) {
-        System.out.println(number + ". " + todo.getTodo());
-      }
+    for (Todolist todolist : model) {
+      System.out.println(todolist.getId() + ". " + todolist.getTodo());
     }
+    // for (int i = 0; i < model.length; i++) {
+    // Todolist todo = model[i];
+    // int number = i + 1;
+
+    // if (todo != null) {
+    // System.out.println(number + ". " + todo.getTodo());
+    // }
+    // }
   }
 
   @Override
